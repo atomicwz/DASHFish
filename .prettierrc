@@ -1,0 +1,5 @@
+// .prettierrc
+{
+    "doubleQuote": true,
+    "trailingComma": "es5"
+}
