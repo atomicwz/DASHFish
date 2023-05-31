@@ -15,14 +15,14 @@ interface IProps<DataType> extends BoxProps {
 	renderRow: (item: DataType, index: number) => React.ReactElement | null;
 }
 
-export const TableView: React.FC = <DataType,>(props: IProps<DataType>) => {
+export const TableView = <DataType,>(props: IProps<DataType>) => {
 
 	const { data, renderRow, headers } = props;
 
 	return (
 		<>
-			<TableContainer pb={4}>
-				<Table variant='striped' colorScheme='blackAlpha' border="1px solid rgba(0,0,0,.1)">
+			<TableContainer mt={10} pb={4} >
+				<Table variant='striped' colorScheme='blackAlpha' size="lg">
 					<Thead>
 						<Tr>
 							{headers.map((item, key) => <Th key={key}>{item}</Th>)}

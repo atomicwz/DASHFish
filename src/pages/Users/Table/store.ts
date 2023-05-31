@@ -27,4 +27,23 @@ export class UserStore {
 			this.loader.end();
 		}
 	};
+	public deleteUser = async (id: string) => {
+		this.loader.start();
+		try {
+			const fetch = await axios.delete(
+				"http://localhost:3001/user",
+				{
+					data: id,
+					headers: {
+						Authorization: window.localStorage.getItem("token"),
+					},
+				},
+			);
+			this.users = fetch.data;
+		} catch {
+			showError("Não foi possível efetuar esta ação.", "Erro.");
+		} finally {
+			this.loader.end();
+		}
+	};
 }
