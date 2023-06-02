@@ -16,7 +16,7 @@ import { ModalDialog } from "../../../components/ModalConfirm";
 
 export const Table: React.FC = observer(() => {
 	const store = useLocalObservable(() => new UserStore());
-	const headers = ["Nome", "Email"];
+	const headers = ["ID", "Nome", "Email", ""];
 	const navigator = useNavigate();
 	const onGoToEdit = (id: string) => navigator(`edit/${id}`);
 
@@ -31,7 +31,7 @@ export const Table: React.FC = observer(() => {
 						<Td>{item.name}</Td>
 						<Td>{item.email}</Td>
 						<Td cursor="pointer">
-							<Flex gap={3}>
+							<Flex gap={3} color="secondary.500">
 								<ModalDialog onClick={() => store.deleteUser(item.id)}>
 									<RiDeleteBin6Line />
 								</ModalDialog>

@@ -21,11 +21,20 @@ export const TableView = <DataType,>(props: IProps<DataType>) => {
 
 	return (
 		<>
-			<TableContainer mt={10} pb={4} >
-				<Table variant='striped' colorScheme='blackAlpha' size="lg">
-					<Thead>
-						<Tr>
-							{headers.map((item, key) => <Th key={key}>{item}</Th>)}
+			<TableContainer
+				border="1px solid"
+				borderColor="blackAlpha.200"
+				minH="50vh"
+				rounded="md"
+				mt={10}
+				pb={4}
+				bg="white"
+				boxShadow="xl"
+			>
+				<Table variant='striped' colorScheme="gray" size="lg">
+					<Thead bg="red">
+						<Tr w="100%" bg="secondary.400" color="white">
+							{headers.map((item, key) => <Th color="white" key={key}>{item}</Th>)}
 						</Tr>
 					</Thead>
 					<Tbody w="100%">

@@ -29,20 +29,31 @@ export class CreateUserStore {
 				this.loader.end();
 				return;
 			}
-			await axios({
-				method: this.id ? "patch" : "post",
-				url: this.id ? `http://localhost:3001/user/${this.id}` : "http://localhost:3001/user",
-				data: {
-					email: this.email,
-					password: this.password,
-					name: this.name,
-				},
-			});
+			if (this.id) {
+				await axios({
+					method: "patch",
+					url: `http://localhost:3001/user/${this.id}`,
+					data: {
+						email: this.email,
+						name: this.name,
+					},
+				});
+			} else {
+				await axios({
+					method: "post",
+					url: "http://localhost:3001/user",
+					data: {
+						email: this.email,
+						password: this.password,
+						name: this.name,
+					},
+				});
+			}
 			showSuccess(this.id ? "Usuário editado com sucesso!" : "Usuário criado com sucesso!", "Feito! 🤩");
 			onSuccess();
 
 		} catch {
-			if (this.password !== this.verifiedPassword) {
+			if (!this.id && this.password !== this.verifiedPassword) {
 				showError("As senhas não coincidem", "Erro. 🙃");
 				this.loader.end();
 				return;
