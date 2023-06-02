@@ -14,7 +14,14 @@ export const Navbar: React.FC<IProps> = ({onLogout}) => {
 	return (
 		<Flex p={4} bg="white" border="1px solid #e5e5e5" fontFamily="Roboto" color="blackAlpha.800">
 			<Flex mx="auto" w="80%" justifyContent="space-between" alignItems="center">
-				<Text fontSize={25} fontFamily="Bai Jamjuree">DASHFish</Text>
+				<Text
+					onClick={() => navigator("/")}
+					fontSize={25}
+					fontFamily="Bai Jamjuree"
+					cursor="pointer"
+				>
+					DASHFish
+				</Text>
 				<Flex gap={5}>
 					<Text
 						fontSize={18}

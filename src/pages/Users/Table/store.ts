@@ -1,12 +1,13 @@
 import { makeAutoObservable } from "mobx";
 import axios from "axios";
-import { showError } from "../../../utils/showError";
+import { showError, showSuccess } from "../../../utils/showError";
 import Loader from "../../../utils/loader";
 import { User } from "../../../utils/apiInterfaces";
 
 export class UserStore {
 	public users: User[] = [];
 	public loader = new Loader();
+	private token = window.localStorage.getItem("token");
 
 	constructor() {
 		makeAutoObservable(this);
@@ -19,6 +20,7 @@ export class UserStore {
 			const fetch = await axios({
 				method: "get",
 				url: "http://localhost:3001/user",
+				headers: {Authorization: `Bearer ${this.token}`},
 			});
 			this.users = fetch.data;
 		} catch {
@@ -27,19 +29,18 @@ export class UserStore {
 			this.loader.end();
 		}
 	};
+
 	public deleteUser = async (id: string) => {
 		this.loader.start();
 		try {
-			const fetch = await axios.delete(
-				"http://localhost:3001/user",
+			await axios.delete(
+				`http://localhost:3001/user/${id}`,
 				{
-					data: id,
-					headers: {
-						Authorization: window.localStorage.getItem("token"),
-					},
+					headers: {Authorization: `Bearer ${this.token}`},
 				},
 			);
-			this.users = fetch.data;
+			showSuccess("O usuário foi removido!", "Sucesso!");
+			await this.getAllUsers();
 		} catch {
 			showError("Não foi possível efetuar esta ação.", "Erro.");
 		} finally {

@@ -20,8 +20,10 @@ const AuthenticatedRoutes = observer(() => {
 		<ScreenLayout>
 			<Routes>
 				<Route index element={<Home />} />
-				<Route path="/users">
+				<Route path="/users/*">
 					<Route index element={<UserPage.Table />} />
+					<Route path="create" element={<UserPage.CreateOrEdit />} />
+					<Route path="edit/:id" element={<UserPage.CreateOrEdit />} />
 				</Route>
 			</Routes>
 		</ScreenLayout>

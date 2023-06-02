@@ -11,6 +11,7 @@ export class LoginStore {
 
 	constructor() {
 		makeAutoObservable(this);
+
 	}
 
 	public onLogin = async (onSuccess: () => void) => {
