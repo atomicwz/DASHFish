@@ -14,8 +14,11 @@ import { UserStore } from "./store";
 import { RiDeleteBin6Line } from "react-icons/ri";
 import { AiOutlineEdit } from "react-icons/ai";
 import { ModalDialog } from "../../../components/ModalConfirm";
+import { IsAdmin } from "../../../utils/apiInterfaces";
 
-export const Table: React.FC = observer(() => {
+interface IProps extends IsAdmin {}
+
+export const Table: React.FC<IProps> = observer(({ isAdmin }) => {
 	const store = useLocalObservable(() => new UserStore());
 	const headers = ["ID", "Nome", "Email", ""];
 	const navigator = useNavigate();
@@ -31,20 +34,26 @@ export const Table: React.FC = observer(() => {
 						<Td>{item.id}</Td>
 						<Td>{item.name}</Td>
 						<Td>{item.email}</Td>
-						<Td cursor="pointer">
-							<Flex gap={3} color="secondary.500">
-								<ModalDialog onClick={() => store.deleteUser(item.id)}>
-									<RiDeleteBin6Line />
-								</ModalDialog>
-								<AiOutlineEdit onClick={() => onGoToEdit(item.id)} />
-							</Flex>
-						</Td>
+						{isAdmin ? (
+							<Td cursor="pointer">
+								<Flex gap={3} color="secondary.500">
+									<ModalDialog onClick={() => store.deleteUser(item.id)}>
+										<RiDeleteBin6Line />
+									</ModalDialog>
+									<AiOutlineEdit onClick={() => onGoToEdit(item.id)} />
+								</Flex>
+							</Td>
+						) : (
+							<Td/>
+						)}
 					</Tr>
 				)}
 			/>
+			{isAdmin &&
 			<Tooltip label="Clique para criar um usuário">
 				<Button mt={10} onClick={() => navigator("create")}>Criar Usuário</Button>
 			</Tooltip>
+			}
 		</Center>
 	);
 });

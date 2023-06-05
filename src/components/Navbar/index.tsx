@@ -5,13 +5,14 @@ import {
 	Tooltip,
 } from "@chakra-ui/react";
 import { useLocation, useNavigate } from "react-router-dom";
+import { observer } from "mobx-react-lite";
 
 interface IProps {
 	onLogout: () => void;
-	isAdmin?: boolean;
+	isAdmin: boolean;
 }
 
-export const Navbar: React.FC<IProps> = ({onLogout, isAdmin}) => {
+export const Navbar: React.FC<IProps> = observer(({onLogout, isAdmin}) => {
 	const navigator = useNavigate();
 	const location = useLocation();
 	return (
@@ -71,4 +72,4 @@ export const Navbar: React.FC<IProps> = ({onLogout, isAdmin}) => {
 			</Flex>
 		</Flex>
 	);
-};
+});

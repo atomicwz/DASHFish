@@ -16,6 +16,7 @@ const AuthenticatedRoutes = observer(() => {
 		if (!window.localStorage.getItem("token")) {
 			navigator("/login");
 		}
+		console.log(store.isAdmin);
 	// eslint-disable-next-line react-hooks/exhaustive-deps
 	},[]);
 
@@ -24,9 +25,13 @@ const AuthenticatedRoutes = observer(() => {
 			<Routes>
 				<Route index element={<Home />} />
 				<Route path="/users/*">
-					<Route index element={<UserPage.Table />} />
-					<Route path="create" element={<UserPage.CreateOrEdit />} />
-					<Route path="edit/:id" element={<UserPage.CreateOrEdit />} />
+					<Route index element={<UserPage.Table isAdmin={store.isAdmin}/>} />
+					{store.isAdmin && (
+						<>
+							<Route path="create" element={<UserPage.CreateOrEdit />} />
+							<Route path="edit/:id" element={<UserPage.CreateOrEdit />} />
+						</>
+					)}
 				</Route>
 			</Routes>
 		</ScreenLayout>
