@@ -1,11 +1,14 @@
 import React from "react";
-import { observer } from "mobx-react-lite";
+import { observer, useLocalObservable } from "mobx-react-lite";
 import { Routes, Route, useNavigate } from "react-router-dom";
 import { Home } from "../../pages/Home";
 import { ScreenLayout } from "../../layout/Navbar";
 import { UserPage } from "../../pages/Users";
+import { RouterStore } from "./store";
 
 const AuthenticatedRoutes = observer(() => {
+
+	const store = useLocalObservable(() => new RouterStore());
 
 	const navigator = useNavigate();
 
@@ -17,7 +20,7 @@ const AuthenticatedRoutes = observer(() => {
 	},[]);
 
 	return (
-		<ScreenLayout>
+		<ScreenLayout isAdmin={store.isAdmin}>
 			<Routes>
 				<Route index element={<Home />} />
 				<Route path="/users/*">

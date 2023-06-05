@@ -5,9 +5,10 @@ import { useNavigate } from "react-router-dom";
 
 interface IProps {
 	children: React.ReactNode;
+	isAdmin?: boolean;
 }
 
-export const ScreenLayout: React.FC<IProps> = ({children}) => {
+export const ScreenLayout: React.FC<IProps> = ({children, isAdmin}) => {
 
 	const navigator = useNavigate();
 
@@ -18,7 +19,7 @@ export const ScreenLayout: React.FC<IProps> = ({children}) => {
 
 	return (
 		<Box>
-			<Navbar onLogout={onLogout}/>
+			<Navbar isAdmin={isAdmin} onLogout={onLogout}/>
 			{children}
 		</Box >
 	);

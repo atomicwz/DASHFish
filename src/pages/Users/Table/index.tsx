@@ -5,6 +5,7 @@ import {
 	Center,
 	Flex,
 	Td,
+	Tooltip,
 	Tr,
 } from "@chakra-ui/react";
 import { observer, useLocalObservable } from "mobx-react-lite";
@@ -26,7 +27,7 @@ export const Table: React.FC = observer(() => {
 				data={store.users}
 				headers={headers}
 				renderRow={(item, index) => (
-					<Tr fontWeight="bold" key={index}>
+					<Tr key={index}>
 						<Td>{item.id}</Td>
 						<Td>{item.name}</Td>
 						<Td>{item.email}</Td>
@@ -41,7 +42,9 @@ export const Table: React.FC = observer(() => {
 					</Tr>
 				)}
 			/>
-			<Button mt={10} onClick={() => navigator("create")}>Criar Usuário</Button>
+			<Tooltip label="Clique para criar um usuário">
+				<Button mt={10} onClick={() => navigator("create")}>Criar Usuário</Button>
+			</Tooltip>
 		</Center>
 	);
 });
