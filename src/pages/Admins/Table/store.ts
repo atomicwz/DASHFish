@@ -8,18 +8,19 @@ export class UserStore {
 	public users: User[] = [];
 	public loader = new Loader();
 	private token = window.localStorage.getItem("token");
+	private id = window.localStorage.getItem("userId");
 
 	constructor() {
 		makeAutoObservable(this);
-		this.getAllUsers();
+		this.getAllAdmin();
 	}
 
-	public getAllUsers = async () => {
+	public getAllAdmin = async () => {
 		this.loader.start();
 		try {
 			const fetch = await axios({
 				method: "get",
-				url: "http://localhost:3001/user",
+				url: "http://localhost:3001/user/admin",
 				headers: {Authorization: `Bearer ${this.token}`},
 			});
 			this.users = fetch.data;
@@ -40,8 +41,8 @@ export class UserStore {
 				},
 			);
 			showSuccess("O usuário foi removido!", "Sucesso!");
-			await this.getAllUsers();
-		} catch (err) {
+			await this.getAllAdmin();
+		} catch {
 			showError("Não foi possível efetuar esta ação.", "Erro.");
 		} finally {
 			this.loader.end();

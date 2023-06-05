@@ -5,6 +5,7 @@ import { Home } from "../../pages/Home";
 import { ScreenLayout } from "../../layout/Navbar";
 import { UserPage } from "../../pages/Users";
 import { RouterStore } from "./store";
+import { AdminPages } from "../../pages/Admins";
 
 const AuthenticatedRoutes = observer(() => {
 
@@ -30,6 +31,15 @@ const AuthenticatedRoutes = observer(() => {
 						<>
 							<Route path="create" element={<UserPage.CreateOrEdit />} />
 							<Route path="edit/:id" element={<UserPage.CreateOrEdit />} />
+						</>
+					)}
+				</Route>
+				<Route path="/admin/*">
+					<Route index element={<AdminPages.Table/>} />
+					{store.isAdmin && (
+						<>
+							<Route path="create" element={<AdminPages.CreateOrEdit />} />
+							<Route path="edit/:id" element={<AdminPages.CreateOrEdit />} />
 						</>
 					)}
 				</Route>
