@@ -20,7 +20,7 @@ export class UserStore {
 		try {
 			const fetch = await axios({
 				method: "get",
-				url: "http://localhost:3001/user/admin",
+				url: `http://localhost:3001/user/admin/${this.id}`,
 				headers: {Authorization: `Bearer ${this.token}`},
 			});
 			this.users = fetch.data;

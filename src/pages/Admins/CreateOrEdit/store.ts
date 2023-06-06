@@ -11,6 +11,7 @@ export class CreateUserStore {
 	public id = "";
 	public loader = new Loader();
 	private token = window.localStorage.getItem("token");
+	private loggedUser = window.localStorage.getItem("userId");
 
 	constructor(id?: string) {
 		makeAutoObservable(this);
@@ -41,7 +42,8 @@ export class CreateUserStore {
 			} else {
 				await axios({
 					method: "post",
-					url: "http://localhost:3001/user/admin",
+					url: `http://localhost:3001/user/admin/${this.loggedUser}`,
+					headers: {Authorization: `Bearer ${this.token}`},
 					data: {
 						email: this.email,
 						password: this.password,
