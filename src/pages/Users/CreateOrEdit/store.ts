@@ -23,7 +23,6 @@ export class CreateUserStore {
 
 	public onCreateUser = async (onSuccess: () => void) => {
 		this.loader.start();
-
 		try {
 			if (!this.id && this.password !== this.verifiedPassword) {
 				showError("As senhas não coincidem", "Erro. 🙃");
