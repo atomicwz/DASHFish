@@ -2,7 +2,7 @@ import { makeAutoObservable } from "mobx";
 import axios from "axios";
 import { showError, showSuccess } from "../../../utils/showError";
 import Loader from "../../../utils/loader";
-import { User } from "../../../utils/apiInterfaces";
+import { User } from "../../../utils/api.interfaces";
 
 export class UserStore {
 	public users: User[] = [];

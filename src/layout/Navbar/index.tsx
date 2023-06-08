@@ -7,9 +7,10 @@ import { observer } from "mobx-react-lite";
 interface IProps {
 	children: React.ReactNode;
 	isAdmin: boolean;
+	avatar: string;
 }
 
-export const ScreenLayout: React.FC<IProps> = observer(({children, isAdmin}) => {
+export const ScreenLayout: React.FC<IProps> = observer(({children, isAdmin, avatar}) => {
 
 	const navigator = useNavigate();
 
@@ -20,7 +21,7 @@ export const ScreenLayout: React.FC<IProps> = observer(({children, isAdmin}) => 
 
 	return (
 		<Box>
-			<Navbar isAdmin={isAdmin} onLogout={onLogout}/>
+			<Navbar isAdmin={isAdmin} avatar={avatar} onLogout={onLogout}/>
 			{children}
 		</Box >
 	);

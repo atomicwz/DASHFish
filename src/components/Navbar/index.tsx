@@ -1,18 +1,21 @@
 import React from "react";
 import {
 	Flex,
+	Image,
 	Text,
 	Tooltip,
 } from "@chakra-ui/react";
 import { useLocation, useNavigate } from "react-router-dom";
+import { BiUserCircle } from "react-icons/bi";
 import { observer } from "mobx-react-lite";
 
 interface IProps {
 	onLogout: () => void;
 	isAdmin: boolean;
+	avatar: string;
 }
 
-export const Navbar: React.FC<IProps> = observer(({onLogout, isAdmin}) => {
+export const Navbar: React.FC<IProps> = observer(({onLogout, isAdmin, avatar}) => {
 	const navigator = useNavigate();
 	const location = useLocation();
 	return (
@@ -29,7 +32,7 @@ export const Navbar: React.FC<IProps> = observer(({onLogout, isAdmin}) => {
 						DASHFish
 					</Text>
 				</Tooltip>
-				<Flex gap={5}>
+				<Flex gap={5} alignItems="center">
 					{isAdmin &&
 					<Text
 						fontSize={18}
@@ -68,6 +71,7 @@ export const Navbar: React.FC<IProps> = observer(({onLogout, isAdmin}) => {
 					>
                         Sair
 					</Text>
+					{avatar ? <Image src={avatar} alt="Avatar" w={10} /> : <BiUserCircle />}
 				</Flex>
 			</Flex>
 		</Flex>

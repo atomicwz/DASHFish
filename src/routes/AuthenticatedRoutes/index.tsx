@@ -17,12 +17,11 @@ const AuthenticatedRoutes = observer(() => {
 		if (!window.localStorage.getItem("token")) {
 			navigator("/login");
 		}
-		console.log(store.isAdmin);
 	// eslint-disable-next-line react-hooks/exhaustive-deps
 	},[]);
 
 	return (
-		<ScreenLayout isAdmin={store.isAdmin}>
+		<ScreenLayout isAdmin={store.isAdmin} avatar={store.image}>
 			<Routes>
 				<Route index element={<Home />} />
 				<Route path="/users/*">

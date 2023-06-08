@@ -14,7 +14,7 @@ import { UserStore } from "./store";
 import { RiDeleteBin6Line } from "react-icons/ri";
 import { AiOutlineEdit } from "react-icons/ai";
 import { ModalDialog } from "../../../components/ModalConfirm";
-import { IsAdmin } from "../../../utils/apiInterfaces";
+import { IsAdmin } from "../../../utils/api.interfaces";
 
 interface IProps extends IsAdmin {}
 
