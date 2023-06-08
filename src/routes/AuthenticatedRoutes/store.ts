@@ -24,6 +24,7 @@ export class RouterStore {
 					headers: {Authorization: `Bearer ${this.token}`},
 				},
 			);
+			this.isAdmin = request.data.isAdmin;
 			const fetchImage = await axios.get(
 				`${BASE_URL}user/profile-image/${request.data.avatar}`,
 				{
@@ -31,7 +32,6 @@ export class RouterStore {
 				},
 			);
 			this.image = fetchImage.config.url;
-			this.isAdmin = request.data.isAdmin;
 		} finally {
 			this.loader.end();
 		}
