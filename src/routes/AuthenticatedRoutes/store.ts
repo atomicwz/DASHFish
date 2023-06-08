@@ -2,6 +2,7 @@ import { makeAutoObservable } from "mobx";
 import axios from "axios";
 import Loader from "../../utils/loader";
 import { showError } from "../../utils/showError";
+import { BASE_URL } from "../../utils/api.endpoint";
 
 export class RouterStore {
 	public loader = new Loader();
@@ -19,21 +20,19 @@ export class RouterStore {
 		this.loader.start();
 		try {
 			const request = await axios.get(
-				`http://localhost:3001/user/${this.id}`,
+				`${BASE_URL}${this.id}`,
 				{
 					headers: {Authorization: `Bearer ${this.token}`},
 				},
 			);
 			const fetchImage = await axios.get(
-				`http://localhost:3001/user/profile-image/${request.data.avatar}`,
+				`${BASE_URL}profile-image/${request.data.avatar}`,
 				{
 					headers: {Authorization: `Bearer ${this.token}`},
 				},
 			);
 			this.image = fetchImage.config.url;
 			this.isAdmin = request.data.isAdmin;
-		} catch {
-			showError("Não foi possível efetuar esta ação.", "Erro.");
 		} finally {
 			this.loader.end();
 		}

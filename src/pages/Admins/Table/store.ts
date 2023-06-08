@@ -3,6 +3,7 @@ import axios from "axios";
 import { showError, showSuccess } from "../../../utils/showError";
 import Loader from "../../../utils/loader";
 import { User } from "../../../utils/api.interfaces";
+import { BASE_URL } from "../../../utils/api.endpoint";
 
 export class UserStore {
 	public users: User[] = [];
@@ -20,7 +21,7 @@ export class UserStore {
 		try {
 			const fetch = await axios({
 				method: "get",
-				url: `http://localhost:3001/user/admin/${this.id}`,
+				url: `${BASE_URL}user/admin/${this.id}`,
 				headers: {Authorization: `Bearer ${this.token}`},
 			});
 			this.users = fetch.data;
@@ -35,7 +36,7 @@ export class UserStore {
 		this.loader.start();
 		try {
 			await axios.delete(
-				`http://localhost:3001/user/${id}`,
+				`${BASE_URL}user/${id}`,
 				{
 					headers: {Authorization: `Bearer ${this.token}`},
 				},

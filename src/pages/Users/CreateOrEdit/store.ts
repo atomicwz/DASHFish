@@ -2,6 +2,7 @@ import { makeAutoObservable } from "mobx";
 import axios from "axios";
 import Loader from "../../../utils/loader";
 import { showError, showSuccess } from "../../../utils/showError";
+import { BASE_URL } from "../../../utils/api.endpoint";
 
 export class CreateUserStore {
 	public email= "";
@@ -32,7 +33,7 @@ export class CreateUserStore {
 			if (this.id) {
 				await axios({
 					method: "patch",
-					url: `http://localhost:3001/user/${this.id}`,
+					url: `${BASE_URL}user/${this.id}`,
 					data: {
 						email: this.email,
 						name: this.name,
@@ -41,7 +42,7 @@ export class CreateUserStore {
 			} else {
 				await axios({
 					method: "post",
-					url: "http://localhost:3001/user",
+					url: `${BASE_URL}user`,
 					data: {
 						email: this.email,
 						password: this.password,
@@ -69,7 +70,7 @@ export class CreateUserStore {
 		try{
 			const user = await axios({
 				method: "get",
-				url: `http://localhost:3001/user/${this.id}`,
+				url: `${BASE_URL}${this.id}`,
 				headers: {Authorization: `Bearer ${this.token}`},
 			});
 

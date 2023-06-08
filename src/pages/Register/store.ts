@@ -2,6 +2,7 @@ import { makeAutoObservable } from "mobx";
 import axios from "axios";
 import Loader from "../../utils/loader";
 import { showError, showSuccess } from "../../utils/showError";
+import { BASE_URL } from "../../utils/api.endpoint";
 
 export class LoginStore {
 	public email= "";
@@ -9,7 +10,6 @@ export class LoginStore {
 	public password= "";
 	public name = "";
 	public loader = new Loader();
-
 	constructor() {
 		makeAutoObservable(this);
 	}
@@ -17,10 +17,9 @@ export class LoginStore {
 	public onCreateUser = async (onSuccess: () => void) => {
 		this.loader.start();
 		try {
-
 			await axios({
 				method: "post",
-				url: "http://localhost:3001/user",
+				url: `${BASE_URL}user`,
 				data: {
 					email: this.email,
 					password: this.password,

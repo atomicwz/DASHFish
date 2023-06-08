@@ -2,6 +2,7 @@ import { makeAutoObservable } from "mobx";
 import axios from "axios";
 import Loader from "../../utils/loader";
 import { showError, showSuccess } from "../../utils/showError";
+import { BASE_URL } from "../../utils/api.endpoint";
 
 export class LoginStore {
 	public email= "";
@@ -19,7 +20,7 @@ export class LoginStore {
 		try {
 			const token = await axios({
 				method: "post",
-				url: "http://localhost:3001/auth/login",
+				url: `${BASE_URL}auth/login`,
 				data: {
 					email: this.email,
 					password: this.password,
