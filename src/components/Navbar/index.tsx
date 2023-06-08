@@ -3,11 +3,14 @@ import {
 	Flex,
 	Image,
 	Text,
+	Box,
 	Tooltip,
 } from "@chakra-ui/react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { BiUserCircle } from "react-icons/bi";
+import { AiOutlineMenu } from "react-icons/ai";
 import { observer } from "mobx-react-lite";
+import { DrawerMenu } from "../DrawerMenu";
 
 interface IProps {
 	onLogout: () => void;
@@ -32,7 +35,12 @@ export const Navbar: React.FC<IProps> = observer(({onLogout, isAdmin, avatar}) =
 						DASHFish
 					</Text>
 				</Tooltip>
-				<Flex gap={5} alignItems="center">
+				<DrawerMenu isAdmin={isAdmin}>
+					<Box display={{base: "block", md:"none"}}>
+						<AiOutlineMenu  color="white" fontSize={30}/>
+					</Box>
+				</DrawerMenu>
+				<Flex display={{base: "none", md:"flex"}} gap={5} alignItems="center">
 					{isAdmin &&
 					<Text
 						fontSize={18}
@@ -71,7 +79,7 @@ export const Navbar: React.FC<IProps> = observer(({onLogout, isAdmin, avatar}) =
 					>
                         Sair
 					</Text>
-					{avatar ? <Image src={avatar} alt="Avatar" w={10} /> : <BiUserCircle />}
+					{avatar ? <Image src={avatar} alt="Avatar" w={20} rounded="xl"/> : <BiUserCircle />}
 				</Flex>
 			</Flex>
 		</Flex>

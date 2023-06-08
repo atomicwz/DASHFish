@@ -20,19 +20,21 @@ export class RouterStore {
 		this.loader.start();
 		try {
 			const request = await axios.get(
-				`${BASE_URL}${this.id}`,
+				`${BASE_URL}user/${this.id}`,
 				{
 					headers: {Authorization: `Bearer ${this.token}`},
 				},
 			);
 			const fetchImage = await axios.get(
-				`${BASE_URL}profile-image/${request.data.avatar}`,
+				`${BASE_URL}user/profile-image/${request.data.avatar}`,
 				{
 					headers: {Authorization: `Bearer ${this.token}`},
 				},
 			);
 			this.image = fetchImage.config.url;
 			this.isAdmin = request.data.isAdmin;
+		} catch {
+			showError("Não foi possível efetuar esta ação.", "Erro.");
 		} finally {
 			this.loader.end();
 		}
