@@ -38,7 +38,10 @@ export const DrawerMenu: React.FC<IProps> = ({ children, isAdmin })=>{
 					<DrawerHeader
 						fontSize={35}
 						mt={20}
-						onClick={() => navigator("/")}
+						onClick={() => {
+							navigator("/");
+							onClose();
+						}}
 						fontFamily="Bai Jamjuree"
 						cursor="pointer"
 						color="white"

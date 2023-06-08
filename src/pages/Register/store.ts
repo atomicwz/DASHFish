@@ -16,8 +16,6 @@ export class LoginStore {
 
 	public onCreateUser = async (onSuccess: () => void) => {
 		this.loader.start();
-		console.log(BASE_URL, "base");
-		console.log(process.env.REACT_APP_API_ENDPOINT, "REACT");
 		try {
 			await axios({
 				method: "post",

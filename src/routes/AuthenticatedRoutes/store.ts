@@ -1,7 +1,6 @@
 import { makeAutoObservable } from "mobx";
 import axios from "axios";
 import Loader from "../../utils/loader";
-import { showError } from "../../utils/showError";
 import { BASE_URL } from "../../utils/api.endpoint";
 
 export class RouterStore {
@@ -33,8 +32,6 @@ export class RouterStore {
 			);
 			this.image = fetchImage.config.url;
 			this.isAdmin = request.data.isAdmin;
-		} catch {
-			showError("Não foi possível efetuar esta ação.", "Erro.");
 		} finally {
 			this.loader.end();
 		}
