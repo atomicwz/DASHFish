@@ -18,8 +18,15 @@ export const Login: React.FC = observer(() => {
 	const store = useLocalObservable(() => new LoginStore());
 	const navigator = useNavigate();
 	const onLogin = () => navigator("/");
-	const onGoToCreate = () => navigator("/register");
 
+	React.useEffect(() => {
+		if (window.localStorage.getItem("token")) {
+			navigator("/");
+		}
+	// eslint-disable-next-line react-hooks/exhaustive-deps
+	},[]);
+
+	const onGoToCreate = () => navigator("/register");
 	return (
 		<Flex flexDirection="column" bg="gray.50" h="100vh">
 			<Flex
