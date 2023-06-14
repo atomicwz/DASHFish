@@ -79,7 +79,7 @@ export const Navbar: React.FC<IProps> = observer(({onLogout, isAdmin, avatar}) =
 					>
                         Sair
 					</Text>
-					{avatar ? <Image src={avatar} alt="Avatar" w={20} rounded="xl"/> : <BiUserCircle />}
+					{avatar ? <Image src={avatar} alt="Avatar" w={20} rounded="xl"/> : <BiUserCircle fontSize={30} />}
 				</Flex>
 			</Flex>
 		</Flex>

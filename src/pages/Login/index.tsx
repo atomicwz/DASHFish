@@ -57,7 +57,7 @@ export const Login: React.FC = observer(() => {
 					</Text>
 				</Center>
 				<Flex fontFamily="Roboto" flexDirection="column" color="blackAlpha.800">
-					<TextInput labelText="Digite seu email" onChange={(e) =>  store.email = e} />
+					<TextInput labelProps={{fontWeight: "normal"}} labelText="Digite seu email" onChange={(e) =>  store.email = e} />
 					<Flex justifyContent="space-between">
 						<Text mb={1} fontWeight="500">Senha:</Text>
 						<Text

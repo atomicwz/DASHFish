@@ -10,8 +10,8 @@ import { HomeStore } from "./store";
 export const Home: React.FC = () => {
 	const store = useLocalObservable(() => new HomeStore());
 	return (
-		<Center overflow="hidden" flexDirection="column" bg="gray.50" h="92vh">
-			<Flex gap={2} >
+		<Center>
+			<Flex gap={2}  mt={40}>
 				<Text>Seja bem vindo, </Text>
 				<Text fontWeight="bold" color="secondary.500">{store.user}!</Text>
 			</Flex>

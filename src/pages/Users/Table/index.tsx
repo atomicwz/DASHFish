@@ -15,12 +15,13 @@ import { RiDeleteBin6Line } from "react-icons/ri";
 import { AiOutlineEdit } from "react-icons/ai";
 import { ModalDialog } from "../../../components/ModalConfirm";
 import { IsAdmin } from "../../../utils/api.interfaces";
+import { formatter } from "../../../utils/formatter";
 
 interface IProps extends IsAdmin {}
 
 export const Table: React.FC<IProps> = observer(({ isAdmin }) => {
 	const store = useLocalObservable(() => new UserStore());
-	const headers = ["ID", "Nome", "Email", ""];
+	const headers = ["ID", "Nome", "Email", "Criado em", ""];
 	const navigator = useNavigate();
 	const onGoToEdit = (id: string) => navigator(`edit/${id}`);
 
@@ -34,6 +35,7 @@ export const Table: React.FC<IProps> = observer(({ isAdmin }) => {
 						<Td>{item.id}</Td>
 						<Td>{item.name}</Td>
 						<Td>{item.email}</Td>
+						<Td>{formatter.date(item.createdAt)}</Td>
 						{isAdmin ? (
 							<Td cursor="pointer">
 								<Flex gap={3} color="secondary.500">

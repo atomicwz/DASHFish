@@ -17,7 +17,7 @@ import { ModalDialog } from "../../../components/ModalConfirm";
 
 export const Table: React.FC = observer(() => {
 	const store = useLocalObservable(() => new UserStore());
-	const headers = ["ID", "Nome", "Email", ""];
+	const headers = ["Nome", "Email", ""];
 	const navigator = useNavigate();
 	const onGoToEdit = (id: string) => navigator(`edit/${id}`);
 
@@ -28,7 +28,6 @@ export const Table: React.FC = observer(() => {
 				headers={headers}
 				renderRow={(item, index) => (
 					<Tr key={index}>
-						<Td>{item.id}</Td>
 						<Td>{item.name}</Td>
 						<Td>{item.email}</Td>
 						<Td cursor="pointer">

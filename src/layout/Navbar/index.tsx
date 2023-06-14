@@ -22,7 +22,9 @@ export const ScreenLayout: React.FC<IProps> = observer(({children, isAdmin, avat
 	return (
 		<Box>
 			<Navbar isAdmin={isAdmin} avatar={avatar} onLogout={onLogout}/>
-			{children}
+			<Box px={10}>
+				{children}
+			</Box>
 		</Box >
 	);
 });

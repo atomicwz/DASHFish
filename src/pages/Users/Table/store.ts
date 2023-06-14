@@ -35,14 +35,14 @@ export class UserStore {
 		this.loader.start();
 		try {
 			await axios.delete(
-				`${BASE_URL}${id}`,
+				`${BASE_URL}user/${id}`,
 				{
 					headers: {Authorization: `Bearer ${this.token}`},
 				},
 			);
 			showSuccess("O usuário foi removido!", "Sucesso!");
 			await this.getAllUsers();
-		} catch (err) {
+		} catch {
 			showError("Não foi possível efetuar esta ação.", "Erro.");
 		} finally {
 			this.loader.end();

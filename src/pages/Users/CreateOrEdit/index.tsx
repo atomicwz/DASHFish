@@ -1,7 +1,7 @@
 import React from "react";
-import { Button, Center, Flex } from "@chakra-ui/react";
+import { Button, Flex } from "@chakra-ui/react";
 import { observer, useLocalObservable } from "mobx-react-lite";
-import { TextInput } from "../../../components";
+import { Card, TextInput } from "../../../components";
 import { CreateUserStore } from "./store";
 import { useNavigate, useParams } from "react-router-dom";
 
@@ -12,15 +12,8 @@ export const CreateOrEdit = observer(() => {
 	const navigator = useNavigate();
 
 	return (
-		<Center flexDirection="column" gap={3}>
+		<Card>
 			<Flex
-				mt={10}
-				w={{
-					base: "100%",
-					md: "80%",
-					lg: "70%",
-					xl: "40%",
-				}}
 				direction="column"
 				gap={3}
 			>
@@ -33,6 +26,6 @@ export const CreateOrEdit = observer(() => {
 			<Button w={40} onClick={() => store.onCreateUser(() => navigator(-1))}>
 				{id ? "Editar" : "Criar"}
 			</Button>
-		</Center>
+		</Card>
 	);
 });

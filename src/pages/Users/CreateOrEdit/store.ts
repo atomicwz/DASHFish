@@ -69,7 +69,7 @@ export class CreateUserStore {
 		try{
 			const user = await axios({
 				method: "get",
-				url: `${BASE_URL}${this.id}`,
+				url: `http://localhost:3001/user/${this.id}`,
 				headers: {Authorization: `Bearer ${this.token}`},
 			});
 
